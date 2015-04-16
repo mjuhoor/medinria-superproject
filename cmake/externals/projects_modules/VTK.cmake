@@ -77,6 +77,7 @@ set(cmake_args
   -DVTK_USE_QT:BOOL=ON
   -DVTK_WRAP_TCL:BOOL=OFF
   -DBUILD_TESTING:BOOL=OFF 
+  -DVTK_WRAP_PYTHON:BOOL=ON
   )
 
 ## #############################################################################
