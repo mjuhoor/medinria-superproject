@@ -14,27 +14,27 @@
 set(DISTRIB windows)
 set(CPACK_PACKAGE_TYPE NSIS)
 set(CPACK_PACKAGING_INSTALL_PREFIX "")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")
 set(CPACK_MONOLITHIC_INSTALL 1)
 
 if(CMAKE_CL_64)
 	SET(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES64")
 	#  - Text used in the installer GUI
-	SET(CPACK_NSIS_PACKAGE_NAME "${CPACK_PACKAGE_NAME} (Win64)")
+	SET(CPACK_NSIS_PACKAGE_NAME "${CPACK_PACKAGE_NAME}")
 	#  - Registry key used to store info about the installation
-	SET(CPACK_PACKAGE_INSTALL_REGISTRY_KEY "${CPACK_PACKAGE_NAME} ${CPACK_PACKAGE_VERSION} (Win64)")
+	SET(CPACK_PACKAGE_INSTALL_REGISTRY_KEY "${CPACK_PACKAGE_NAME})")
 	SET(MSVC_ARCH x64)
 
 else()
     SET(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES")
 	SET(CPACK_NSIS_PACKAGE_NAME ${CPACK_PACKAGE_NAME})
-	SET(CPACK_PACKAGE_INSTALL_REGISTRY_KEY "${CPACK_PACKAGE_NAME} ${CPACK_PACKAGE_VERSION}")
+	SET(CPACK_PACKAGE_INSTALL_REGISTRY_KEY "${CPACK_PACKAGE_NAME}")
 	SET(MSVC_ARCH x86)
 endif()
 
-set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-${MSVC_ARCH}")
+set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${MSVC_ARCH}")
 
-set(ICON_PATH "${PROJECT_SOURCE_DIR}/medInria/app/medInria/resources/medInria.ico")
+set(ICON_PATH "${PROJECT_SOURCE_DIR}/medInria/app/medInria/resources/music_logo_small.ico")
 
 # The icon to install the application.
 set(CPACK_NSIS_MUI_ICON ${ICON_PATH})
@@ -43,7 +43,7 @@ set(CPACK_NSIS_MUI_ICON ${ICON_PATH})
 set(CPACK_NSIS_MUI_UNIICON ${ICON_PATH})
 
 # Add a desktop shortcut
-set(CPACK_CREATE_DESKTOP_LINKS "medInria")
+set(CPACK_CREATE_DESKTOP_LINKS "MUSIC")
 
 # The icon in the Add/Remove control panel
 set(CPACK_NSIS_INSTALLED_ICON_NAME bin\\\\medInria.exe)
@@ -52,10 +52,10 @@ set(CPACK_NSIS_INSTALLED_ICON_NAME bin\\\\medInria.exe)
 set(CPACK_NSIS_MODIFY_PATH "ON")
 
 # Add shortcut in the Startup menu
-set(CPACK_PACKAGE_EXECUTABLES "medInria" "medInria")
+set(CPACK_PACKAGE_EXECUTABLES "MUSIC" "MUSIC")
 
 # Add a link to the application website in the Startup menu.
-set(CPACK_NSIS_MENU_LINKS "http://med.inria.fr/" "Homepage for medInria") 
+set(CPACK_NSIS_MENU_LINKS "https://team.inria.fr/asclepios/software/music/" "Homepage for MUSIC") 
 
 # Run medInria after installation
 set(CPACK_NSIS_MUI_FINISHPAGE_RUN "medInria.exe")
