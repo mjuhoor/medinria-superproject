@@ -43,22 +43,22 @@ set(CPACK_NSIS_MUI_ICON ${ICON_PATH})
 set(CPACK_NSIS_MUI_UNIICON ${ICON_PATH})
 
 # Add a desktop shortcut
-set(CPACK_CREATE_DESKTOP_LINKS "MUSIC")
+set(CPACK_CREATE_DESKTOP_LINKS "MUSIC Viewer")
 
 # The icon in the Add/Remove control panel
-set(CPACK_NSIS_INSTALLED_ICON_NAME bin\\\\medInria.exe)
+set(CPACK_NSIS_INSTALLED_ICON_NAME bin\\\\MUSIC_Viewer.exe)
 
 # Add medinria to the PATH
 set(CPACK_NSIS_MODIFY_PATH "ON")
 
 # Add shortcut in the Startup menu
-set(CPACK_PACKAGE_EXECUTABLES "MUSIC" "MUSIC")
+set(CPACK_PACKAGE_EXECUTABLES "MUSIC_Viewer" "MUSIC_Viewer")
 
 # Add a link to the application website in the Startup menu.
 set(CPACK_NSIS_MENU_LINKS "https://team.inria.fr/asclepios/software/music/" "Homepage for MUSIC") 
 
 # Run medInria after installation
-set(CPACK_NSIS_MUI_FINISHPAGE_RUN "medInria.exe")
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN "MUSIC_Viewer.exe")
 
 # Delete the Startup menu link after uninstallation
 set(CPACK_NSIS_DELETE_ICONS_EXTRA "
@@ -76,7 +76,7 @@ if (NOT PRIVATE_PLUGINS_DIRS STREQUAL "")
 endif()
 
 #${CMAKE_CFG_INTDIR}
-set(APP "\${CMAKE_INSTALL_PREFIX}/bin/medInria.exe")
+set(APP "\${CMAKE_INSTALL_PREFIX}/bin/MUSIC_Viewer.exe")
 
 list(APPEND 
   libSearchDirs 
