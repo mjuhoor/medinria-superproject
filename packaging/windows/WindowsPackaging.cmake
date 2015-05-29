@@ -48,9 +48,6 @@ set(CPACK_CREATE_DESKTOP_LINKS "MUSIC Viewer")
 # The icon in the Add/Remove control panel
 set(CPACK_NSIS_INSTALLED_ICON_NAME bin\\\\MUSIC_Viewer.exe)
 
-# Add medinria to the PATH
-set(CPACK_NSIS_MODIFY_PATH "ON")
-
 # Add shortcut in the Startup menu
 set(CPACK_PACKAGE_EXECUTABLES "MUSIC_Viewer" "MUSIC_Viewer")
 
