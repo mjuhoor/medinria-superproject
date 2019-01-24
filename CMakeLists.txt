@@ -112,9 +112,7 @@ option(USE_GITLAB_INRIA_SSH
   "Use by default Git SSH addresses, requires public key set on Inria gitlab" OFF
   )
 
-# Add CMAKE_MODULE_PATH to superProjectConfig.cmake, useful for
-# Asclepios and visages plugins
-file(WRITE ${${PROJECT_NAME}_CONFIG_FILE}
+file(APPEND ${${PROJECT_NAME}_CONFIG_FILE}
   "set(USE_GITLAB_INRIA_SSH ${USE_GITLAB_INRIA_SSH})\n"
   )
 
