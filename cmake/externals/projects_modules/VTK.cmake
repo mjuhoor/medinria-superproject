@@ -85,6 +85,8 @@ set(cmake_args_generic
   -DBUILD_TESTING:BOOL=OFF 
   # OGV
   -DVTK_USE_OGGTHEORA_ENCODER:BOOL=ON
+  # To be removed when upgrading VTK version
+  -DVTK_REQUIRED_OBJCXX_FLAGS:STRING=""
   )
 
 if (WIN32)
