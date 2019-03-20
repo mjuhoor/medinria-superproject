@@ -101,7 +101,7 @@ ExternalProject_Add(${ep}
   ${location}
   ${ep_dirs}
   UPDATE_COMMAND ""
-  ${DTK_PATCH_COMMAND}
+  PATCH_COMMAND ${DTK_PATCH_COMMAND}
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
