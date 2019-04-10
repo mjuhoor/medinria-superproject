@@ -124,7 +124,7 @@ ExternalProject_Add(${ep}
   ${ep_dirs}
   ${location}
   UPDATE_COMMAND ""
-  ${VTK_PATCH_COMMAND}
+  PATCH_COMMAND ${VTK_PATCH_COMMAND}
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}

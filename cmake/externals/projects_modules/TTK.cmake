@@ -92,7 +92,7 @@ ExternalProject_Add(${ep}
   ${ep_dirs}
   ${location}
   UPDATE_COMMAND ""
-  ${TTK_PATCH_COMMAND}
+  PATCH_COMMAND ${TTK_PATCH_COMMAND}
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
