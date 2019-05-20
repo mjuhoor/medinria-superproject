@@ -31,7 +31,7 @@ MEDINRIA_BIN="@MEDINRIA_BIN@"
 #   Set the plugins and library paths.
 
 export MEDINRIA_PLUGIN_PATH="@MEDINRIA_PLUGINS_DIRS@"
-export LD_LIBRARY_PATH=${MEDINRIA_DIR}/lib:${MEDINRIA_DIR}/DCMTK/install/lib:${MEDINRIA_DIR}/lib/vtk-5.10:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=${MEDINRIA_DIR}/lib:${MEDINRIA_DIR}/lib/vtk-5.10:$LD_LIBRARY_PATH
 
 #   Call medInria
 

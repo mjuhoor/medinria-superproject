@@ -75,7 +75,7 @@ set(cmake_args
   -DCMAKE_C_FLAGS:STRING=${${ep}_c_flags}
   -DCMAKE_CXX_FLAGS:STRING=${${ep}_cxx_flags}
   -DCMAKE_SHARED_LINKER_FLAGS:STRING=${${ep}_shared_linker_flags}  
-  -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+  -DCMAKE_INSTALL_PREFIX:PATH=<BINARY_DIR>
   -DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS_${ep}}
   -DDCMTK_WITH_DOXYGEN:BOOL=OFF
   -DDCMTK_WITH_ZLIB:BOOL=OFF    
@@ -86,6 +86,9 @@ set(cmake_args
   -DDCMTK_WITH_ICONV:BOOL=OFF    
   -DDCMTK_OVERWRITE_WIN32_COMPILER_FLAGS:BOOL=OFF
   -DDCMTK_ENABLE_CXX11:BOOL=ON
+  -DDCMTK_ENABLE_BUILTIN_DICTIONARY:BOOL=ON
+  -DDCMTK_ENABLE_PRIVATE_TAGS:BOOL=ON
+  -DDCMTK_FORCE_FPIC_ON_UNIX:BOOL=ON
   )
 
 ## #############################################################################
@@ -98,6 +101,7 @@ ExternalProject_Add(${ep}
   UPDATE_COMMAND ""
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
+  INSTALL_COMMAND ""
   )
 
 
@@ -105,8 +109,8 @@ ExternalProject_Add(${ep}
 ## Set variable to provide infos about the project
 ## #############################################################################
 
-ExternalProject_Get_Property(${ep} install_dir)
-set(${ep}_DIR ${install_dir} PARENT_SCOPE)
+ExternalProject_Get_Property(${ep} binary_dir)
+set(${ep}_DIR ${binary_dir} PARENT_SCOPE)
 
 
 ## #############################################################################
