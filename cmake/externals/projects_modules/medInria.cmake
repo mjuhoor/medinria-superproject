@@ -22,8 +22,8 @@ set(ep medInria)
 list(APPEND ${ep}_dependencies 
   Qt4 
   dtk 
-  DCMTK
-  ITK
+  DCMTK 
+  ITK 
   VTK 
   TTK 
   QtDCM

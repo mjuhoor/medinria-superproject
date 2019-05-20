@@ -1,0 +1,96 @@
+From a4ddf366ef6e09d763b18dce264f11acbf7eb58b Mon Sep 17 00:00:00 2001
+From: Julien Castelneau <julien.castelneau@ihu-liryc.fr>
+Date: Fri, 3 May 2019 15:23:05 +0200
+Subject: [PATCH] QtDCM
+
+---
+ CMake/FindDCMTK.cmake |  2 +-
+ Code/CMakeLists.txt   |  2 ++
+ Code/QtDcmMoveScu.cpp | 10 +++++-----
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/CMake/FindDCMTK.cmake b/CMake/FindDCMTK.cmake
+index c6e6ffd..03c84c6 100644
+--- a/CMake/FindDCMTK.cmake
++++ b/CMake/FindDCMTK.cmake
+@@ -140,7 +140,7 @@ endforeach()
+ 
+ 
+ if(WIN32)
+-  list(APPEND DCMTK_LIBRARIES netapi32 wsock32)
++  list(APPEND DCMTK_LIBRARIES iphlpapi ws2_32 netapi32 wsock32)
+ endif()
+ 
+ if(DCMTK_ofstd_INCLUDE_DIR)
+diff --git a/Code/CMakeLists.txt b/Code/CMakeLists.txt
+index 7a51a72..c4a8227 100644
+--- a/Code/CMakeLists.txt
++++ b/Code/CMakeLists.txt
+@@ -101,6 +101,7 @@ set(QTDCM_LIBRARIES
+   ITKIOImageBase
+   ITKCommon
+   ITKIOBMP
++  ITKIOBruker
+   ITKIOBioRad
+   ITKIOHDF5
+   ITKIOGDCM
+@@ -109,6 +110,7 @@ set(QTDCM_LIBRARIES
+   ITKIOJPEG
+   ITKIOLSM
+   ITKIOMeta
++  ITKIOMINC
+   ITKIONIFTI
+   ITKIONRRD
+   ${ITKIOPhilipsREC_LIBRARIES}
+diff --git a/Code/QtDcmMoveScu.cpp b/Code/QtDcmMoveScu.cpp
+index d6ea6fe..2ad049d 100644
+--- a/Code/QtDcmMoveScu.cpp
++++ b/Code/QtDcmMoveScu.cpp
+@@ -407,7 +407,7 @@ void QtDcmMoveScu::addOverrideKey ( QString key )
+         qDebug() << QString ( msg2 );
+     }
+ 
+-    DcmElement *elem = newDicomElement ( tag );
++    DcmElement *elem = DcmItem::newDicomElement ( tag );
+ 
+     if ( elem == NULL )
+     {
+@@ -534,7 +534,7 @@ OFCondition QtDcmMoveScu::acceptSubAssoc ( T_ASC_Network * aNet, T_ASC_Associati
+             numTransferSyntaxes = 3;
+             break;
+ 
+-        case EXS_JPEGProcess14SV1TransferSyntax:
++        case EXS_JPEGProcess14SV1:
+             /* we prefer JPEGLossless:Hierarchical-1stOrderPrediction (default lossless) */
+             transferSyntaxes[0] = UID_JPEGProcess14SV1TransferSyntax;
+             transferSyntaxes[1] = UID_LittleEndianExplicitTransferSyntax;
+@@ -543,7 +543,7 @@ OFCondition QtDcmMoveScu::acceptSubAssoc ( T_ASC_Network * aNet, T_ASC_Associati
+             numTransferSyntaxes = 4;
+             break;
+ 
+-        case EXS_JPEGProcess1TransferSyntax:
++        case EXS_JPEGProcess1:
+             /* we prefer JPEGBaseline (default lossy for 8 bit images) */
+             transferSyntaxes[0] = UID_JPEGProcess1TransferSyntax;
+             transferSyntaxes[1] = UID_LittleEndianExplicitTransferSyntax;
+@@ -552,7 +552,7 @@ OFCondition QtDcmMoveScu::acceptSubAssoc ( T_ASC_Network * aNet, T_ASC_Associati
+             numTransferSyntaxes = 4;
+             break;
+ 
+-        case EXS_JPEGProcess2_4TransferSyntax:
++        case EXS_JPEGProcess2_4:
+             /* we prefer JPEGExtended (default lossy for 12 bit images) */
+             transferSyntaxes[0] = UID_JPEGProcess2_4TransferSyntax;
+             transferSyntaxes[1] = UID_LittleEndianExplicitTransferSyntax;
+@@ -696,7 +696,7 @@ OFCondition QtDcmMoveScu::acceptSubAssoc ( T_ASC_Network * aNet, T_ASC_Associati
+             /* the array of Storage SOP Class UIDs comes from dcuid.h */
+             cond = ASC_acceptContextsWithPreferredTransferSyntaxes (
+                        ( *assoc )->params,
+-                       dcmAllStorageSOPClassUIDs, numberOfAllDcmStorageSOPClassUIDs,
++                       dcmAllStorageSOPClassUIDs, numberOfDcmAllStorageSOPClassUIDs,
+                        transferSyntaxes, numTransferSyntaxes );
+         }
+     }
+-- 
+2.17.2 (Apple Git-113)
+

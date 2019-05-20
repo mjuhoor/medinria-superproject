@@ -54,7 +54,7 @@ list(APPEND external_projects
   ffmpeg
   VTK 
   ITK 
-  DCMTK
+  DCMTK 
   TTK
   QtDCM  
   RPI 

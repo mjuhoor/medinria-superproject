@@ -21,7 +21,7 @@ set(ep QtDCM)
 
 list(APPEND ${ep}_dependencies 
   Qt4 
-  ITK
+  ITK 
   DCMTK
   )
   
@@ -80,12 +80,20 @@ set(cmake_args
   )
 
 ## #############################################################################
+## Check if patch has to be applied
+## #############################################################################
+
+ep_GeneratePatchCommand(QtDCM QtDCM_PATCH_COMMAND QtDCM.patch)
+
+## #############################################################################
 ## Add external-project
 ## #############################################################################
 
 ExternalProject_Add(${ep}
   ${ep_dirs}
   ${location}
+  UPDATE_COMMAND ""
+  PATCH_COMMAND ${QtDCM_PATCH_COMMAND}
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
